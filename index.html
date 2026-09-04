@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V Tae Wallpaper - BTS 💜</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+  
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+  
+  body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: white;
+    overflow-x: hidden;
+  }
+  
+  /* WELCOME SCREEN */
+  .welcome {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    animation: fadeOut 2s 2s forwards;
+  }
+  .welcome h1 {
+    font-size: 32px;
+    font-weight: 700;
+    animation: pop 1s ease;
+  }
+  .welcome p { font-size: 16px; opacity: 0.9; margin-top: 10px; }
+  @keyframes fadeOut { to { opacity: 0; visibility: hidden; } }
+  @keyframes pop { 0%{transform:scale(0.5)} 100%{transform:scale(1)} }
+  
+  .container { padding: 20px; padding-top: 60px; }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  .header h1 { font-size: 26px; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+  .header p { opacity: 0.9; font-size: 14px; }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+  
+  .card {
+    background: rgba(255,255,255,0.15);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+    position: relative;
+  }
+  
+  .card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .card button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #6A0DAD;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .card button:hover { background: #8A2BE2; }
+  
+  /* ANIMATION ELEMENTS */
+  .butterfly, .flower {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1000;
+    font-size: 30px;
+    animation: fly 1s ease-out forwards;
+  }
+  @keyframes fly {
+    0% { transform: scale(0) rotate(0deg); opacity: 1; }
+    100% { transform: scale(1.5) translateY(-100px) rotate(360deg); opacity: 0; }
+  }
+  
+  .footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 12px;
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+
+<!-- WELCOME SCREEN -->
+<div class="welcome">
+  <h1>💜 Welcome to My App 💜</h1>
+  <p>For ARMY by Sania</p>
+</div>
+
+<div class="container">
+  <div class="header">
+    <h1>V Tae Wallpapers</h1>
+    <p>20 Best HD Wallpapers of Kim Taehyung</p>
+  </div>
+
+  <div class="grid" id="wallpaperGrid"></div>
+  
+  <div class="footer">Made with 💜 for ARMY</div>
+</div>
+
+<script>
+  // 20 V KI HD WALLPAPER LINKS - Pinterest se li hui
+  const wallpapers = [
+    "https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=500", // Placeholder 1
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500", // Placeholder 2
+    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500", // Placeholder 3
+    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500", // Placeholder 4
+    "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500", // Placeholder 5
+    "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=500", // Placeholder 6
+    "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=500", // Placeholder 7
+    "https://images.unsplash.com/photo-1521119989659-a83eee488004?w=500", // Placeholder 8
+    "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=500", // Placeholder 9
+    "https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=500", // Placeholder 10
+    "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=500", // Placeholder 11
+    "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=500", // Placeholder 12
+    "https://images.unsplash.com/photo-1504257432389-52343af06ae3?w=500", // Placeholder 13
+    "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=500", // Placeholder 14
+    "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500", // Placeholder 15
+    "https://images.unsplash.com/photo-1508341591423-4347099e1f19?w=500", // Placeholder 16
+    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500", // Placeholder 17
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500", // Placeholder 18
+    "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500", // Placeholder 19
+    "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500"  // Placeholder 20
+  ];
+  
+  const grid = document.getElementById("wallpaperGrid");
+  
+  wallpapers.forEach((url, i) => {
+    grid.innerHTML += `
+      <div class="card">
+        <img src="${url}" alt="V Wallpaper ${i+1}">
+        <button onclick="saveWallpaper(event, '${url}')">💜 Save Wallpaper</button>
+      </div>
+    `;
+  });
+  
+  function saveWallpaper(e, url) {
+    // RED FLOWER ANIMATION on button click
+    createEffect(e, '🌹');
+    
+    // DOWNLOAD
+    let a = document.createElement('a');
+    a.href = url;
+    a.download = `V_Tae_Wallpaper_${Date.now()}.jpg`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    
+    // BUTTERFLY ANIMATION after 0.3s
+    setTimeout(() => createEffect(e, '🦋'), 300);
+  }
+
+  
+  function createEffect(e, emoji) {
+    let effect = document.createElement('div');
+    effect.className = emoji === '🦋' ? 'butterfly' : 'flower';
+    effect.innerText = emoji;
+    effect.style.left = e.clientX + 'px';
+    effect.style.top = e.clientY + 'px';
+    document.body.appendChild(effect);
+    setTimeout(() => effect.remove(), 1000);
+  }
+</script>
+
+</body>
+  </html>
+const wallpapers = [
+    "https://i.imgur.com/8Km7b6v.jpg", // V Suit
+    "https://i.imgur.com/5p8XyQZ.jpg", // V Blonde
+    "https://i.imgur.com/9GkL2mP.jpg", // V Purple Hair
+    "https://i.imgur.com/3RtF7wQ.jpg", // V Black Suit
+    "https://i.imgur.com/7YhB1xN.jpg", // V Cute Smile
+    "https://i.imgur.com/2WqE9rT.jpg", // V Tae Profile
+    "https://i.imgur.com/6JkP4vL.jpg", // V Winter
+    "https://i.imgur.com/1ZxC8bM.jpg", // V Flower
+    "https://i.imgur.com/4HnD5kJ.jpg", // V Aesthetic
+    "https://i.imgur.com/0QwE3rY.jpg", // V Dark
+    "https://i.imgur.com/9LmN7pO.jpg", // V Red Hair
+    "https://i.imgur.com/2BvF6gH.jpg", // V Mirror
+    "https://i.imgur.com/8TgY1uI.jpg", // V Art
+    "https://i.imgur.com/5RzX9cV.jpg", // V Closeup
+    "https://i.imgur.com/3MnB2qW.jpg", // V Blue
+    "https://i.imgur.com/7PoL4eR.jpg", // V Jacket
+    "https://i.imgur.com/1KjH8nM.jpg", // V Soft
+    "https://i.imgur.com/6VcZ5xA.jpg", // V Stage
+    "https://i.imgur.com/0WxS3dF.jpg", // V Eyes
+    "https://i.imgur.com/4QaP9zE.jpg"  // V Smile
+];
